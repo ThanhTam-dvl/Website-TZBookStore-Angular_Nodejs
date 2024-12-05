@@ -1,0 +1,83 @@
+
+
+<!-- Payment Start -->
+<div class="container-xxl py-6" style="margin-top: 40px;">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Thông Tin Thanh Toán -->
+            <div class="col-lg-7">
+                <div class="wow fadeInUp" data-wow-delay="0.1s">
+                    <h2 class="mb-4">Thông Tin Thanh Toán</h2>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="fullName" placeholder="Họ và Tên">
+                                    <label for="fullName">Họ và Tên</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="Email">
+                                    <label for="email">Email</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="tel" class="form-control" id="phone" placeholder="Số Điện Thoại">
+                                    <label for="phone">Số Điện Thoại</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="paymentMethod">
+                                        <option selected>Chọn Phương Thức Thanh Toán</option>
+                                        <option value="1">Thanh Toán Khi Nhận Hàng</option>
+                                        <option value="2">Chuyển Khoản Ngân Hàng</option>
+                                        <option value="3">Thẻ Tín Dụng</option>
+                                    </select>
+                                    <label for="paymentMethod">Phương Thức Thanh Toán</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="address" placeholder="Địa Chỉ Giao Hàng">
+                                    <label for="address">Địa Chỉ Giao Hàng</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Ghi chú đơn hàng" id="orderNotes" style="height: 100px"></textarea>
+                                    <label for="orderNotes">Ghi Chú Đơn Hàng (Không Bắt Buộc)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Thông Tin Đơn Hàng -->
+            <div class="col-lg-5">
+                <div class="bg-light rounded p-5 wow fadeInUp" data-wow-delay="0.5s">
+                  <h2 class="mb-4">Thông Tin Đơn Hàng</h2>
+                  <div *ngFor="let item of orderItems" class="d-flex justify-content-between mb-3">
+                    <h6>{{ item.title }} (x{{ item.quantity }})</h6>
+                    <p>{{ item.price * item.quantity}}.00đ</p>
+                  </div>
+        
+                  <div class="d-flex justify-content-between mb-3">
+                    <h6>Phí Vận Chuyển</h6>
+                    <p>0đ</p>
+                  </div>
+        
+                  <div class="d-flex justify-content-between mb-3 pt-3 border-top">
+                    <h6 class="fw-bold">Tổng Cộng</h6>
+                    <h6 class="fw-bold text-primary">{{ totalAmount + 0}}.00đ</h6> <!-- Thêm phí vận chuyển -->
+                  </div>
+                  <button class="btn btn-primary rounded-pill py-3 px-5 w-100">Xác Nhận Đặt Hàng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Payment End -->

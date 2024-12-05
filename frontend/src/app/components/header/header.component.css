@@ -1,0 +1,135 @@
+/* Topbar */
+.auth-btn {
+    padding: 6px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.auth-btn-register {
+    background-color: #d4a373; /* Màu nâu nhạt */
+    border: 1px solid #d4a373;
+    color: #fff;
+}
+
+.auth-btn-register:hover {
+    background-color: #c49667;
+    border-color: #c49667;
+    color: #fff;
+}
+
+.auth-btn-login {
+    background-color: transparent;
+    border: 1px solid #d4a373;
+    color: #d4a373;
+}
+
+.auth-btn-login:hover {
+    background-color: #d4a373;
+    color: #fff;
+}
+
+/* Thêm hiệu ứng khi hover */
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Thêm hiệu ứng khi click */
+.auth-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+
+/*  */
+
+
+
+.icon-f:hover > i {
+    scale: 1.2;
+    color: rgb(35, 140, 226);
+}
+
+.icon-l:hover > i {
+    scale: 1.2;
+    color: #fff;
+}
+
+
+.icon-g:hover > i {
+    scale: 1.2;
+    color: rgb(102, 102, 102);
+}
+
+.icon-i:hover > i {
+    scale: 1.2;
+    color: rgb(224, 52, 187);
+}
+
+
+.icon:before {
+    background: var(--color);
+    content: "";
+    position: absolute;
+    width: 130%;
+    height: 130%;
+    left: -110%;
+    top: 80%;
+    transform: rotate(45deg);
+}
+
+.icon :hover::before {
+    animation: slide 0.7s forwards;
+}
+@keyframes slide {
+    50% {
+        left: 10%;
+        top: -40%;
+    }
+    100% {
+        left: -15%;
+        top: -15%;
+    }
+}
+
+/* Navbar */
+.navbar-dark-fixed {
+    background-color: #1E1916 !important;
+    transition: background-color 0.3s ease; /* Hiệu ứng mượt */
+  }
+
+  .cart-btn {
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cart-btn:hover {
+    background-color: #EAA636; /* Màu xanh dương */
+    color: white;
+    transform: scale(1.05); /* Hiệu ứng phóng lớn nhẹ */
+}
+
+.cart-btn i {
+    font-size: 20px; /* Kích thước biểu tượng */
+}
+
+.cart-text {
+    font-size: 16px; /* Kích thước chữ */
+}
+
+.badge {
+    font-size: 12px; /* Kích thước số lượng */
+    padding: 4px 6px;
+}
+
+
+
+
+
+
