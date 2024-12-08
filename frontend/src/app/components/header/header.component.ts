@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
       this.isProductDetailPage = 
       this.router.url.includes('/product-detail') || 
       this.router.url.includes('/Shoppingcart') || 
-      this.router.url.includes('/Order');
+      this.router.url.includes('/Order'); 
     });
     
   }

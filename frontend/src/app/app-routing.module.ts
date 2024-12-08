@@ -11,7 +11,8 @@ import { ProductComponent } from './pages/product/product.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ShoppingCartComponent } from './pages/shoppingcart/shoppingcart.component';
 import { OrderComponent } from './pages/order/order.component';
-
+import { OrderHistoryComponent } from './pages/order-history/order-history.component';
+import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -28,6 +29,8 @@ const routes: Routes = [
   { path: 'product/:id', component: ProductDetailComponent},
   { path: 'Products/:categoryId', component: ProductComponent },
   { path: 'product-detail/:id', component: ProductDetailComponent },
+  { path: 'order-history', component: OrderHistoryComponent},
+  { path: 'order-detail/:id', component: OrderDetailComponent}
 
 ];
 

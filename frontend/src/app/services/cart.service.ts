@@ -8,6 +8,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CartService {
   private apiUrl = 'http://localhost:5000/api';
+  private cartItems: any[] = [];
+  private cartItemCount = new BehaviorSubject<number>(0);
+  private cartTotalAmount = new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient) {}
 
@@ -35,5 +38,13 @@ export class CartService {
   getCartItemCount(userId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/cart/count/${userId}`);
   }
-  
+
+  // Thêm phương thức clearCart để xóa toàn bộ giỏ hàng
+  clearCart() {
+    this.cartItems = [];
+    this.cartItemCount.next(0);
+    this.cartTotalAmount.next(0);
+    // Nếu bạn lưu giỏ hàng trong localStorage, hãy xóa nó
+    localStorage.removeItem('cartItems');
+  }
 }

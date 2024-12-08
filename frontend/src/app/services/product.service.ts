@@ -40,4 +40,4 @@ export class ProductService {
     return this.http.post(`${this.apiUrl}/orders`, orderData);
   }
   
-}
+} 

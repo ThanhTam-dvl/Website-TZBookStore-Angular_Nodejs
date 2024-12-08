@@ -15,6 +15,8 @@ import { ShoppingCartComponent } from './pages/shoppingcart/shoppingcart.compone
 
 import { ProductService } from './services/product.service';
 import { OrderComponent } from './pages/order/order.component';
+import { OrderHistoryComponent } from './pages/order-history/order-history.component';
+import { OrderDetailComponent } from './pages/order-detail/order-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { OrderComponent } from './pages/order/order.component';
     ProductComponent,
     ProductDetailComponent,
     ShoppingCartComponent,
-    OrderComponent
+    OrderComponent,
+    OrderHistoryComponent,
+    OrderDetailComponent,
   ],
   imports: [
     BrowserModule,

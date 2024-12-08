@@ -26,7 +26,7 @@ export class AppComponent implements OnInit  {
     this.router.events.subscribe(() => {
       // Ẩn layout với các đường dẫn cụ thể
       const currentUrl = this.router.url;
-      this.showLayout = !(currentUrl === '/Login' || currentUrl === '/Register');
+      this.showLayout = !(currentUrl === '/Login' || currentUrl === '/Register' || currentUrl === '/admin');
     });
 
     this.router.events.subscribe((event) => {
