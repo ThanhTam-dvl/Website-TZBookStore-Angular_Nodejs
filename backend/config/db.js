@@ -1,4 +1,5 @@
 const mysql = require('mysql2');
+const util = require('util');
 
 const db = mysql.createConnection({
     host: 'localhost',
@@ -15,15 +16,7 @@ db.connect((err) => {
     console.log('Connected to database');
 });
 
-// Add error handler
-db.on('error', (err) => {
-    console.error('Database error:', err);
-    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-        // Reconnect if connection is lost
-        db.connect();
-    } else {
-        throw err;
-    }
-});
+// Wrap db.query in a promise
+db.query = util.promisify(db.query);
 
 module.exports = db;

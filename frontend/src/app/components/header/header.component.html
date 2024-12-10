@@ -3,8 +3,39 @@
     <div class="row gx-0 align-items-center d-none d-lg-flex">
         <div class="col-lg-6 px-5 text-start">
             <div class="d-inline-flex align-items-center">
-                <a href="#" class="btn auth-btn auth-btn-register me-3" routerLink="Register">Đăng ký</a>
-                <a href="#" class="btn auth-btn auth-btn-login" routerLink="Login">Đăng nhập</a>
+                <!-- Hiển thị nút đăng ký/đăng nhập khi chưa đăng nhập -->
+                <ng-container *ngIf="!currentUser">
+                    <a class="btn auth-btn auth-btn-register me-3" routerLink="/Register">Đăng ký</a>
+                    <a class="btn auth-btn auth-btn-login" routerLink="/Login">Đăng nhập</a>
+                </ng-container>
+                
+                <!-- Hiển thị thông tin user và nút đăng xuất khi đã đăng nhập -->
+                <ng-container *ngIf="currentUser">
+                    <div class="d-flex align-items-center">
+                        <div class="dropdown">
+                            <button class="btn btn-light rounded-pill dropdown-toggle" 
+                                    type="button" 
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                <i class="fas fa-user me-2"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li>
+                                    <a class="dropdown-item" routerLink="/order-history">
+                                        <i class="fas fa-history me-2"></i>Lịch sử đơn hàng
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" style="cursor: pointer;" (click)="logout()">
+                                        <i class="fas fa-sign-out-alt me-2"></i>Đăng xuất
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <span class="text-light ms-3">Xin chào, {{ currentUser.user.fullName }}</span>
+                    </div>
+                </ng-container>
             </div>
         </div>
         <div class="col-lg-6 px-5 text-end">

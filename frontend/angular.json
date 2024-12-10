@@ -36,7 +36,8 @@
               "src/assets/lib/owlcarousel/assets/owl.theme.green.css",
               "src/assets/lib/owlcarousel/assets/owl.theme.green.min.css",
               "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",
-              "node_modules/owl.carousel/dist/assets/owl.theme.default.min.css"
+              "node_modules/owl.carousel/dist/assets/owl.theme.default.min.css",
+              "node_modules/sweetalert2/dist/sweetalert2.min.css"
             ],
             "scripts": [
               "src/assets/lib/boostrap/jquery.js",

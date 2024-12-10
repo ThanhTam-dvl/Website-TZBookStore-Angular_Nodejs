@@ -128,6 +128,148 @@
     padding: 4px 6px;
 }
 
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    margin-top: 0.5rem;
+    min-width: 200px;
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    position: absolute;
+    z-index: 1100;
+}
+
+.dropdown-item {
+    padding: 0.5rem 1rem;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #d4a373;
+}
+
+.dropdown-item i {
+    width: 20px;
+}
+
+.btn-light {
+    background-color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s;
+}
+
+.btn-light:hover {
+    background-color: #f8f9fa;
+}
+
+.dropdown-divider {
+    margin: 0.5rem 0;
+    border-top: 1px solid #eee;
+}
+
+.user-welcome {
+    font-size: 14px;
+    color: #fff;
+}
+
+.btn-user-menu {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-user-menu:hover {
+    background-color: #fff;
+    color: #333;
+}
+
+/* User button styles */
+.btn-light.dropdown-toggle {
+    background-color: #fff;
+    border: none;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-light.dropdown-toggle:hover {
+    background-color: #d4a373;
+    color: #fff;
+}
+
+.btn-light.dropdown-toggle:hover i {
+    color: #fff;
+}
+
+/* Welcome text styles */
+.text-light {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Button styles */
+.btn-light.rounded-pill {
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1050;
+}
+
+.btn-light.rounded-pill:hover {
+    background-color: #f0f0f0;
+}
+
+.btn-light.rounded-pill:active {
+    background-color: #e9ecef;
+}
+
+.small {
+    font-size: 0.75rem;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+}
+
+/* Đảm bảo dropdown menu hiển thị đúng vị trí */
+.dropdown-menu-end {
+    right: 0;
+    left: auto;
+    margin-top: 10px !important;
+}
+
+/* Thêm khoảng cách cho dropdown menu */
+.top-bar {
+    position: relative;
+    z-index: 1100;
+}
+
+/* Điều chỉnh vị trí của navbar */
+.navbar-dark.fixed-top {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+/* Điều chỉnh khoảng cách cho nội dung chính */
+.container-xxl {
+    padding-top: 100px;
+}
+
 
 
 

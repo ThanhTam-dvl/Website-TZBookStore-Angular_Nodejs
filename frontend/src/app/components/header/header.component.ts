@@ -1,51 +1,89 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { CartBadgeService } from 'src/app/services/cartbadge.service';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { CategoryService } from 'src/app/services/category.service';
+import { CartBadgeService } from '../../services/cartbadge.service';
+import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
+
+interface Category {
+  category_id: number;
+  category_name: string;
+  description?: string;
+}
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-
 export class HeaderComponent implements OnInit {
-  categories: any[] = [];
-  cartCount = 0;
+  categories: Category[] = [];
+  cartCount: number = 0;
   isProductDetailPage: boolean = false;
-  isScrolled = false;
+  currentUser: any = null;
 
   constructor(
-    private http: HttpClient,
+    private router: Router,
+    private categoryService: CategoryService,
     private cartBadgeService: CartBadgeService,
-    private router: Router
-  ) {}
-
-  
-  ngOnInit(): void {
-    this.getCategories();
-    this.cartBadgeService.cartCount$.subscribe((count) => {
-      this.cartCount = count;
+    private authService: AuthService
+  ) {
+    // Kiểm tra route hiện tại
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.isProductDetailPage = event.url.includes('/product-detail/');
+      }
     });
-
-    this.router.events.subscribe(() => {
-      // Kiểm tra xem đang ở trang chi tiết sản phẩm hay không
-      this.isProductDetailPage = 
-      this.router.url.includes('/product-detail') || 
-      this.router.url.includes('/Shoppingcart') || 
-      this.router.url.includes('/Order'); 
-    });
-    
   }
 
-  getCategories() {
-    this.http.get<any[]>('http://localhost:5000/api/categories').subscribe(
-      (data) => {
+  ngOnInit(): void {
+    // Lấy danh sách categories
+    this.categoryService.getCategories().subscribe(
+      (data: Category[]) => {
         this.categories = data;
       },
-      (error) => {
-        console.error('Failed to fetch categories', error);
+      (error: any) => {
+        console.error('Error fetching categories:', error);
       }
     );
+
+    // Theo dõi số lượng giỏ hàng
+    this.cartBadgeService.cartCount$.subscribe(
+      (count: number) => {
+        this.cartCount = count;
+      }
+    );
+
+    // Theo dõi trạng thái đăng nhập
+    this.authService.currentUser.subscribe(
+      (user: any) => {
+        this.currentUser = user;
+      }
+    );
+  }
+
+  logout(): void {
+    // Sử dụng SweetAlert2 để hiển thị dialog xác nhận đẹp hơn
+    Swal.fire({
+      title: 'Xác nhận đăng xuất',
+      text: 'Bạn có chắc chắn muốn đăng xuất?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Đăng xuất',
+      cancelButtonText: 'Hủy',
+      confirmButtonColor: '#d4a373',
+      cancelButtonColor: '#6c757d'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.logout();
+        Swal.fire({
+          title: 'Đã đăng xuất!',
+          text: 'Đăng xuất thành công',
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        });
+      }
+    });
   }
 }
