@@ -2,12 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const multer = require('multer');
+const path = require('path');
 
 const bookRoutes = require('./routes/books');
 const userRoutes = require('./routes/users');
 const orderRoutes = require('./routes/orders');
 const categoriesRoutes = require('./routes/categories');
 const cartRoutes = require('./routes/carts');
+const booksController = require('./controllers/booksController');
 
 dotenv.config();
 const app = express();
@@ -15,12 +18,32 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Routes
+// Cấu hình multer để xử lý file upload
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/') // Đảm bảo thư mục uploads tồn tại
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname))
+    }
+});
+
+const upload = multer({ storage: storage });
+
+// Serve static files from uploads directory
+app.use('/uploads', express.static('uploads'));
+
+// Routes với file upload phải đặt trước các routes khác
+app.post('/api/books', upload.single('image'), booksController.createBook);
+app.put('/api/books/:id', upload.single('image'), booksController.updateBook);
+
+// Các routes khác
 app.use('/api/books', bookRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
-app.use('/api/book-categories', categoriesRoutes);
+app.use('/api/categories', categoriesRoutes);
 app.use('/api/cart', cartRoutes);
 
 // Start server
@@ -29,6 +52,7 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
+// Error handling
 app.use((err, req, res, next) => {
     console.error('Lỗi server:', err);
     res.status(500).json({

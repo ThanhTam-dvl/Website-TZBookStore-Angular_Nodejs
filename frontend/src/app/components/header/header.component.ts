@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getCategories() {
-    this.http.get<any[]>('http://localhost:5000/api/book-categories').subscribe(
+    this.http.get<any[]>('http://localhost:5000/api/categories').subscribe(
       (data) => {
         this.categories = data;
       },

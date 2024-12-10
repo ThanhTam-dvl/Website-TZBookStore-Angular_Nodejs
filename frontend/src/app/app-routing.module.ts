@@ -30,7 +30,8 @@ const routes: Routes = [
   { path: 'Products/:categoryId', component: ProductComponent },
   { path: 'product-detail/:id', component: ProductDetailComponent },
   { path: 'order-history', component: OrderHistoryComponent},
-  { path: 'order-detail/:id', component: OrderDetailComponent}
+  { path: 'order-detail/:id', component: OrderDetailComponent},
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
 
 ];
 
